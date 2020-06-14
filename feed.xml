@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-06-14T14:18:58+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Your awesome title</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/jekyll/update/2020/06/14/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2020-06-14T12:00:26+08:00</published><updated>2020-06-14T12:00:26+08:00</updated><id>http://localhost:4000/jekyll/update/2020/06/14/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2020/06/14/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+
+&lt;p&gt;Jekyll requires blog post files to be named according to the following format:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR-MONTH-DAY-title.MARKUP&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR&lt;/code&gt; is a four-digit number, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MONTH&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DAY&lt;/code&gt; are both two-digit numbers, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MARKUP&lt;/code&gt; is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry><entry><title type="html">Testing</title><link href="http://localhost:4000/2020/06/14/testing.html" rel="alternate" type="text/html" title="Testing" /><published>2020-06-14T00:00:00+08:00</published><updated>2020-06-14T00:00:00+08:00</updated><id>http://localhost:4000/2020/06/14/testing</id><content type="html" xml:base="http://localhost:4000/2020/06/14/testing.html">&lt;h1 id=&quot;利用-python-进行数据可视化&quot;&gt;&lt;center&gt;**利用 Python 进行数据可视化**&lt;/center&gt;&lt;/h1&gt;
+&lt;hr /&gt;
+&lt;p align=&quot;right&quot;&gt;东南大学-经济管理学院-GS119530-薛皓元&lt;/p&gt;
+
+&lt;p&gt;[TOC]&lt;/p&gt;
+
+&lt;h3 id=&quot;1&quot;&gt;{#1}&lt;/h3&gt;
+
+&lt;h2 id=&quot;引言&quot;&gt;引言&lt;/h2&gt;
+
+&lt;p&gt;个人认为的数据可视化，是旨在借助于图形化手段，清晰有效地传达与沟通信息，是指将大型数据集中的数据以图形图像形式表示，并利用数据分析和开发工具发现其中未知信息的处理过程。&lt;/p&gt;
+
+&lt;p&gt;！&lt;a href=&quot;C:\Users\Administrator\Desktop\期末作业\高级灰.jpg&quot; title=&quot;testing&quot;&gt;testing&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=702257389,1274025419&amp;amp;fm=27&amp;amp;gp=0.jpg&quot; alt=&quot;blockchain&quot; title=&quot;区块链&quot; /&gt;
+(testing above)-一种是基于文件的一种是基于网页的&lt;/p&gt;
+
+&lt;p&gt;我认为数据可视化并不是简单的把数据变成图表。而是以数据为视角，看待世界。换句话说，数据可视化的客体是数据，但我们想要的其实是——数据视觉，以数据为工具，以可视化为手段，目的是描述真实，探索世界。
+（可修改）&lt;/p&gt;
+
+&lt;h2 id=&quot;0-序言&quot;&gt;0 序言&lt;/h2&gt;
+&lt;h3 id=&quot;-数据可视化简介&quot;&gt;-数据可视化简介&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;数据可视化（Data Visualization）&lt;/strong&gt;，利用人对形状、颜色的感官敏感，来研究如何利用图形来展现数据中隐含的信息，挖掘数据中包含的关系、规律、趋势。&lt;/p&gt;
+
+&lt;p&gt;常用基础图表有&lt;strong&gt;饼图、散点图、折线图、柱形图、雷达图&lt;/strong&gt;等，操作时根据数据间的关系，选择相应合适的图表。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;成分&lt;/strong&gt;：用来表示部分和总体的关系，一般用饼图表示。如果类别较少，可以用圆环图，如果类别较多，可以用树状图来展示。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;排序&lt;/strong&gt;：展示不同的数值大小，常用柱形图、条形图、气泡图来展示。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;时间序列&lt;/strong&gt;：如果只有一个序列，可用折线图、柱状图来展示；如果多个序列，首选折线图。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;频率分布&lt;/strong&gt;：和排序类似，但通常展示的是分组。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;相关性&lt;/strong&gt;：通常用散点图表示，也可以使用分组柱形图、旋风图、气泡图等&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;多重数据比较&lt;/strong&gt;：对多个维度的数据进行展示，一般使用雷达图。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;（结束语）&lt;/p&gt;
+
+&lt;h3 id=&quot;-数据可视化的工具&quot;&gt;-数据可视化的工具&lt;/h3&gt;
+
+&lt;p&gt;Python数据可视化的基本工具有matplotlib、seaborn、Bokeh和ggplot,下面部分文段会对这四种工具进行详述。&lt;/p&gt;
+
+&lt;p&gt;Matplotlib 是一个 Python 的 2D绘图库，它以各种硬拷贝格式和跨平台的交互式环境生成出版质量级别的图形。Matplotlib 是一个 Python 的 2D绘图库，它以各种硬拷贝格式和跨平台的交互式环境生成出版质量级别的图形。通过 Matplotlib，开发者可以仅需要几行代码，便可以生成绘图，直方图，功率谱，条形图，错误图，散点图等。&lt;/p&gt;
+
+&lt;p&gt;    Seabn是一个在Python中制作有吸引力和丰富信息的统计图形的库。它构建在MatPultLB的顶部，与PyDATA栈紧密集成，包括对SIMPY和BANDA数据结构的支持以及SISPY和STATSMODEL的统计例程。&lt;/p&gt;
+
+&lt;p&gt;    Seaborn 其实是在matplotlib的基础上进行了更高级的 API 封装，从而使得作图更加容易 在大多数情况下使用seaborn就能做出很具有吸引力的图，而使用matplotlib就能制作具有更多特色的图。应该把Seaborn视为matplotlib的补充。Seabn是基于MatPultLB的Python可视化库。它为绘制有吸引力的统计图形提供了一个高级接口。&lt;/p&gt;
+
+&lt;p&gt;pandas和matplotlib就可以直接出分析的图表了，最基本的出图方式。是面向数据分析过程中出图的工具；Seaborn相比matplotlib封装了一些对数据的组合和识别的功能；用Seaborn出一些针对seaborn的图表是很快的，比如说分布图、热图、分类分布图等。如果用matplotlib需要先group by先分组再出图；&lt;/p&gt;
+
+&lt;p&gt;Seaborn在出图的方式上，除了图表的可视化好看，还多了出图的公用性的东西； 关联数据用get去做，空间数据用echart、powmart去做。&lt;/p&gt;
+
+&lt;p&gt;基于web端的python数据可视化工具包，可交互（）&lt;/p&gt;
+
+&lt;p&gt;matplotlib和seaborn都是面向过程的，在数据分析过程中可以呈现；Bokeh是在最后的结果呈现，可做动图，可只打开一张表，也可以做仪表盘的排版，可做图表的联动。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;
+import this
+import numpy as np
+
+生成块（可以空格）
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;1 序表&lt;/li&gt;
+  &lt;li&gt;2&lt;/li&gt;
+  &lt;li&gt;3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;-数据可视化的意义&quot;&gt;-数据可视化的意义&lt;/h3&gt;
+&lt;p&gt;数据可视化的作用：表达形象化、重点突出化、体现专业性。&lt;/p&gt;
+
+&lt;p&gt;数据可视化的主要作用，在于通过图形和色彩将关键数据和特征直观地传达出来，从而实现对于相当稀疏而又复杂的数据集的深入洞察。单纯说“呈现”，并不确切，因为数据可视化并非无差异地涵盖所有数据，可视化的过程本身就已经加入了制作人的对问题的思考、理解、甚至是一些假设，而数据可视化则是通过一目了然地方式，帮助制作人获得客观数据层面的引导或者验证。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;1、传递速度快人脑对视觉信息的处理要比书面信息块10倍。使用图表来总结复杂的数据，可以确保对关系的理解要比那些混乱的报告或电子表格更快。&lt;/li&gt;
+  &lt;li&gt;2、数据显示的多维性在可视化的分析下，数据将每一维的值分类、排序、组合和显示，这样就可以看到表示对象或事件的数据的多个属性或变量。&lt;/li&gt;
+  &lt;li&gt;3、更直观的展示信息大数据可视化报告使我们能够用一些简短的图形就能体现那些复杂信息，甚至单个图形也能做到。决策者可以轻松地解释各种不同的数据源。丰富但有意义的图形有助于让忙碌的主管和业务伙伴了解问题和未决的计划。&lt;/li&gt;
+  &lt;li&gt;4、大脑记忆能力的限制在观察物体的时候，人类的大脑和计算机一样有长期的记忆(memory 硬盘)和短期的记忆(cache 内存)的区分。只有我们让要记下文字，诗歌，物体，一遍一遍的在短期记忆里不断重复出现之后, 它们才可能进入长期记忆。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;1-数据可视化工具&quot;&gt;1 数据可视化工具&lt;/h2&gt;
+&lt;h3 id=&quot;11-matplotlib-入门及常用工具&quot;&gt;1.1 matplotlib 入门及常用工具&lt;/h3&gt;
+&lt;h4 id=&quot;111-matplotlib-图表中的基本元素&quot;&gt;1.1.1 matplotlib 图表中的基本元素&lt;/h4&gt;
+&lt;h4 id=&quot;112-图片与子图子画布&quot;&gt;1.1.2 图片与子图（子画布）&lt;/h4&gt;
+&lt;h4 id=&quot;113-风格化绘图颜色标记和线类型&quot;&gt;1.1.3 风格化绘图（颜色、标记和线类型）&lt;/h4&gt;
+&lt;h4 id=&quot;114-刻度标签和图例&quot;&gt;1.1.4 刻度、标签和图例&lt;/h4&gt;
+&lt;h4 id=&quot;115-将图片保存到文件&quot;&gt;1.1.5 将图片保存到文件&lt;/h4&gt;
+&lt;h3 id=&quot;12-seaborn-入门及常用工具&quot;&gt;1.2 seaborn 入门及常用工具&lt;/h3&gt;
+&lt;h3 id=&quot;13-bokeh-入门及常用工具&quot;&gt;1.3 Bokeh 入门及常用工具&lt;/h3&gt;
+&lt;h3 id=&quot;14-ggplot-入门及常用工具&quot;&gt;1.4 ggplot 入门及常用工具&lt;/h3&gt;
+
+&lt;h2 id=&quot;2-散点图&quot;&gt;2 散点图&lt;/h2&gt;
+
+&lt;h2 id=&quot;3-矩阵图&quot;&gt;3 矩阵图&lt;/h2&gt;
+
+&lt;h2 id=&quot;4折线图&quot;&gt;4.折线图&lt;/h2&gt;
+
+&lt;h2 id=&quot;5饼图&quot;&gt;5.饼图&lt;/h2&gt;
+
+&lt;h2 id=&quot;6柱形图&quot;&gt;6.柱形图&lt;/h2&gt;
+
+&lt;h2 id=&quot;7条形图&quot;&gt;7.条形图&lt;/h2&gt;
+
+&lt;h2 id=&quot;8直方图与密度图&quot;&gt;8.直方图与密度图&lt;/h2&gt;
+
+&lt;h2 id=&quot;9高级柱状和饼图&quot;&gt;9.高级柱状和饼图&lt;/h2&gt;
+
+&lt;h2 id=&quot;10三维图&quot;&gt;10.三维图&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jianshu.com&quot;&gt;简书&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;#1&quot;&gt;公式标题锚点&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;数据可视化--matplotlib-篇&quot;&gt;&lt;strong&gt;数据可视化 – matplotlib 篇&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;h3 id=&quot;-关于-matplotlib-库的简介&quot;&gt;-关于 matplotlib 库的简介&lt;/h3&gt;
+&lt;p&gt;Matplotlib 是一个 Python 的 2D绘图库，它以各种硬拷贝格式和跨平台的交互式环境生成出版质量级别的图形。Matplotlib 是一个 Python 的 2D绘图库，它以各种硬拷贝格式和跨平台的交互式环境生成出版质量级别的图形。通过 Matplotlib，开发者可以仅需要几行代码，便可以生成绘图，直方图，功率谱，条形图，错误图，散点图等。(需修改)&lt;/p&gt;
+
+&lt;h3 id=&quot;1-简明-matplotlib-api-入门&quot;&gt;1 简明 matplotlib API 入门&lt;/h3&gt;
+&lt;h4 id=&quot;11-简单线性图的绘制及保存&quot;&gt;1.1 简单线性图的绘制及保存&lt;/h4&gt;
+&lt;p&gt;在使用 matplotlib 时，一般使用以下的导入惯例：&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;下面尝试生成一个简单的图形/线性图，并将其保存。&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;savefig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'matplotlib1.jpg'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;具体生成图形如下图所示：&lt;/p&gt;
+
+&lt;p&gt;！&lt;a href=&quot;.\matplotlib1.jpg&quot; title=&quot;简单线性图&quot;&gt;简单线性图&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;其中,你可以使用 plt.savefig 将图片保存至文件，savefig 的相关参数选项如下：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;参数&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;描述&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;fname&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;包含文件路径或 Python 文件型对象的字符串；其中，图片格式是从文件扩展名中推断出来的&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;dpi&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;每英寸点数的分辨率；默认是100，可编辑配置&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;dacecolor,edgecolor&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;子图之外的图形背景颜色；默认为’w’，即白色&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;format&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;文件格式，如：png pdf jpg eps svg 等&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;bbox_inches&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;要保存的图片范围；如传递’tight’，将会去除图片周围的空白部分&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;所以，根据上述参数及描述，如果希望的到一个简洁的，文件格式为 png 格式，分辨率为 300 DPI 的相同图形，需要运行以下代码：&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;savefig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'matplotlib1.png'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dpi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bbox_inches&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'tight'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;下面是对&lt;/p&gt;</content><author><name></name></author><summary type="html">**利用 Python 进行数据可视化** 东南大学-经济管理学院-GS119530-薛皓元</summary></entry></feed>
