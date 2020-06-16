@@ -1,0 +1,1467 @@
+
+<h1 id="利用-python-进行数据可视化"><center>利用 Python 进行数据可视化</center></h1>
+<hr />
+<p align="right">东南大学-经济管理学院-GS119530-薛皓元</p>
+
+<p align="right">（索引暂时做不出来，见谅）</p>
+
+<h2 id="引言">引言</h2>
+
+<p>此文档首先是作为在东南大学大一的通选课 Python 语言与数据科学的期末大作业而写的，因为平生首次接触文档的书写和 GitPages 的配置，很多地方都多有不妥，希望老师谅解！感谢夏老师在本学期的教学，能选到夏老师的课真的是非常幸运，如果有机会，以后我也会选择旁听夏老师的其他课的！</p>
+
+<p>再说说个人认为的数据可视化，个人认为数据可视化是旨在借助于图形化手段，清晰有效地传达与沟通信息，是指将大型数据集中的数据以图形图像形式表示，并利用数据分析和开发工具发现其中未知信息的处理过程。</p>
+
+<p>其次，数据可视化并不是简单的把数据变成图表。而是以数据为视角，看待世界。换句话说，数据可视化的客体是数据，但我们想要的其实是——数据视觉，以数据为工具，以可视化为手段，目的是描述真实，探索世界。</p>
+
+<p>本文档将会以 Python 相关工具为主视角，尽可能多的阐述数据可视化的相关工具及其描述方法。注：本文档使用的非 random 数据或数据集将附在文末连接处。</p>
+
+<h2 id="0-序言">0 序言</h2>
+<h3 id="-数据可视化简介">-数据可视化简介</h3>
+
+<p><strong>数据可视化（Data Visualization）</strong>，利用人对形状、颜色的感官敏感，来研究如何利用图形来展现数据中隐含的信息，挖掘数据中包含的关系、规律、趋势。</p>
+
+<p>常用基础图表有<strong>饼图、散点图、折线图、柱形图、雷达图</strong>等，操作时根据数据间的关系，选择相应合适的图表。</p>
+
+<blockquote>
+  <p><strong>成分</strong>：用来表示部分和总体的关系，一般用饼图表示。如果类别较少，可以用圆环图，如果类别较多，可以用树状图来展示。</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>排序</strong>：展示不同的数值大小，常用柱形图、条形图、气泡图来展示。</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>时间序列</strong>：如果只有一个序列，可用折线图、柱状图来展示；如果多个序列，首选折线图。</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>频率分布</strong>：和排序类似，但通常展示的是分组。</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>相关性</strong>：通常用散点图表示，也可以使用分组柱形图、旋风图、气泡图等</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>多重数据比较</strong>：对多个维度的数据进行展示，一般使用雷达图。</p>
+</blockquote>
+
+<p><img src="https://vip1.loli.net/2020/06/15/oebfN6zkWPQplUx.jpg" alt="TP.jpg" /></p>
+
+<h3 id="-数据可视化的意义">-数据可视化的意义</h3>
+
+<p>数据可视化的作用：表达形象化、重点突出化、体现专业性。</p>
+
+<p>数据可视化的主要作用，在于通过图形和色彩将关键数据和特征直观地传达出来，从而实现对于相当稀疏而又复杂的数据集的深入洞察。单纯说“呈现”，并不确切，因为数据可视化并非无差异地涵盖所有数据，可视化的过程本身就已经加入了制作人的对问题的思考、理解、甚至是一些假设，而数据可视化则是通过一目了然地方式，帮助制作人获得客观数据层面的引导或者验证。</p>
+
+<ul>
+  <li>1、传递速度快人脑对视觉信息的处理要比书面信息块10倍。使用图表来总结复杂的数据，可以确保对关系的理解要比那些混乱的报告或电子表格更快。</li>
+  <li>2、数据显示的多维性在可视化的分析下，数据将每一维的值分类、排序、组合和显示，这样就可以看到表示对象或事件的数据的多个属性或变量。</li>
+  <li>3、更直观的展示信息大数据可视化报告使我们能够用一些简短的图形就能体现那些复杂信息，甚至单个图形也能做到。决策者可以轻松地解释各种不同的数据源。丰富但有意义的图形有助于让忙碌的主管和业务伙伴了解问题和未决的计划。</li>
+  <li>4、大脑记忆能力的限制在观察物体的时候，人类的大脑和计算机一样有长期的记忆(memory 硬盘)和短期的记忆(cache 内存)的区分。只有我们让要记下文字，诗歌，物体，一遍一遍的在短期记忆里不断重复出现之后, 它们才可能进入长期记忆。</li>
+</ul>
+
+<p>Python数据可视化的基本工具有matplotlib、Bokeh和pyechart等,下面部分文段会对这几种工具进行详述。</p>
+
+<h2 id="1-数据可视化--matplotlib-篇">1 <strong>数据可视化 – matplotlib 篇</strong></h2>
+
+<h3 id="-关于-matplotlib-库的简介">-关于 matplotlib 库的简介</h3>
+
+<p>matplotlib 是 python 最著名的2D绘图库，可以称之为 Python 数据可视化库的泰斗，已经有十多年的历史，它提供了一整套和matlab相似的命令API，与 MATLAB 非常相似，十分适合交互式地进行制图。而且也可以方便地将它作为绘图控件，嵌入GUI应用程序中。通过简单的绘图语句，就可以绘制出高质量的图了。</p>
+
+<p>通过 Matplotlib，开发者可以仅需要几行代码，便可以生成绘图，直方图，功率谱，条形图，错误图，散点图等。</p>
+
+<h3 id="11-简明-matplotlib-api-入门">1.1 简明 matplotlib API 入门</h3>
+
+<p><img src="https://vip1.loli.net/2020/06/15/vwgIBlOa71VPxcq.png" alt="图表.png" /></p>
+
+<h4 id="111-简单线性图的绘制及保存">1.1.1 简单线性图的绘制及保存</h4>
+<p>在使用 matplotlib 时，一般使用以下的导入惯例：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</code></pre></div></div>
+<p>下面尝试生成一个简单的图形/线性图，并将其保存。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'matplotlib1.jpg'</span><span class="p">)</span>
+</code></pre></div></div>
+<p>具体生成图形如下图所示：</p>
+
+<p><img src="https://vip1.loli.net/2020/06/15/2MWH9sDZQudi4tb.jpg" alt="matplotlib1.jpg" /></p>
+
+<p>其中,你可以使用 plt.savefig 将图片保存至文件，savefig 的相关参数选项如下：
+参数|描述
+–|:–:
+fname|包含文件路径或 Python 文件型对象的字符串；其中，图片格式是从文件扩展名中推断出来的
+dpi|每英寸点数的分辨率；默认是100，可编辑配置
+dacecolor,edgecolor|子图之外的图形背景颜色；默认为’w’，即白色
+format|文件格式，如：png pdf jpg eps svg 等
+bbox_inches|要保存的图片范围；如传递’tight’，将会去除图片周围的空白部分</p>
+
+<p>所以，根据上述参数及描述，如果希望的到一个简洁的，文件格式为 png 格式，分辨率为 300 DPI 的相同图形，需要运行以下代码：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'matplotlib1.png'</span><span class="p">,</span> <span class="n">dpi</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span> <span class="o">=</span> <span class="s">'tight'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>当然，可视化过程中所处理的数据一般是更加多维，更加复杂的，一张图标往往不足以呈现多元的数据，所以图表中的子图就相当重要。</p>
+
+<h4 id="112-图片与子图">1.1.2 图片与子图</h4>
+
+<p>matplotlib 所绘制的图片位于图片（ Figure ) 对象中，一般可以使用 plt.figure 生成一个全新的图片，该空白图片不能直接对象绘图，进而需要使用 add_subplot 创建一个或者多个子图,输入以下代码，会得到图片如下所示：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">3.5</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">])</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">).</span><span class="n">cumsum</span><span class="p">(),</span> <span class="s">'k--'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'matplotlib2.jpg'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/15/bsoAFNkWwVMcdmY.jpg" alt="matplotlib2.jpg" /></p>
+
+<p>其中，’k–’ 是用于绘制黑色分段线的 style 选项，后面部分会介绍。</p>
+
+<p>fig.add_subplot 返回的对象是 Axes Subplot 对象，使用这些对象可以直接在其他空白子图上调用对象进行绘图。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">_</span> <span class="o">=</span> <span class="n">ax1</span><span class="p">.</span><span class="n">hist</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">'k'</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="n">ax2</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/15/BRKyht18L4EZfTc.jpg" alt="matplotlib3.jpg" /></p>
+
+<p>同样的，数组 axes 也可以像二维数组一样使用索引，如： axes[0,1]</p>
+
+<p>pyplot.subplots 相关选项如下表所示：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>参数</th>
+      <th style="text-align: center">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>nrows</td>
+      <td style="text-align: center">子图的行数</td>
+    </tr>
+    <tr>
+      <td>ncols</td>
+      <td style="text-align: center">子图的列数</td>
+    </tr>
+    <tr>
+      <td>sharex</td>
+      <td style="text-align: center">所有子图使用相同的x轴刻度，调整 xlim 会影响所有子图</td>
+    </tr>
+    <tr>
+      <td>sharey</td>
+      <td style="text-align: center">所有子图使用相同的y轴刻度，同上</td>
+    </tr>
+    <tr>
+      <td>subplot_kw</td>
+      <td style="text-align: center">传入 add_suplot 的关键字参数字典，用于生成子图</td>
+    </tr>
+    <tr>
+      <td>**fig_kw</td>
+      <td style="text-align: center">在生成图片时使用的额外关键字参数</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>同时，在绘制图片时，可以使用图对象上的 subplots_adjust 更改间距,例：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="n">bottom</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="n">top</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="n">hspace</span> <span class="o">=</span> <span class="bp">None</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>wspace 和 hspace 分别控制图片的宽度和高度百分比，调整图片的宽度和高度百分比可以用作调整子图之间的间距，在此不举例。</p>
+
+<p>除了图片和子图，matplotlib 还可以进行更多的个性化设置，以让图片具有更强的可看性。</p>
+
+<h4 id="113-颜色标记和线类型">1.1.3 颜色、标记和线类型</h4>
+
+<p>matplotlib 的主函数 plot 接受带有x和y轴的数组以及一些可选的字符串缩写参数来指明颜色和线类型，例如：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">30</span><span class="p">).</span><span class="n">cumsum</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s">'k--'</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s">'Default'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s">'k-'</span><span class="p">,</span> <span class="n">drawstyle</span> <span class="o">=</span> <span class="s">'steps-post'</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s">'steps-post'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'matplotlib4.jpg'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/15/ersazjtGkKO43AT.jpg" alt="matplotlib4.jpg" /></p>
+
+<p>由此，我们可以在不同 drawstyle 选项下做出不同效果的线条来满足更加个性化的需求，从而让图片更加完善和清晰，同样可利用不同控制符，个性化我们的线条：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>字符</th>
+      <th style="text-align: center">颜色</th>
+      <th style="text-align: center">字符</th>
+      <th style="text-align: center">类型</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>‘b’</td>
+      <td style="text-align: center">blue</td>
+      <td style="text-align: center">’-‘</td>
+      <td style="text-align: center">实线</td>
+    </tr>
+    <tr>
+      <td>‘g’</td>
+      <td style="text-align: center">green</td>
+      <td style="text-align: center">’–’</td>
+      <td style="text-align: center">虚线</td>
+    </tr>
+    <tr>
+      <td>‘r’</td>
+      <td style="text-align: center">red</td>
+      <td style="text-align: center">’-.’</td>
+      <td style="text-align: center">虚点线</td>
+    </tr>
+    <tr>
+      <td>‘c’</td>
+      <td style="text-align: center">cyan 青色</td>
+      <td style="text-align: center">’:’</td>
+      <td style="text-align: center">点线</td>
+    </tr>
+    <tr>
+      <td>‘m’</td>
+      <td style="text-align: center">magenta平红</td>
+      <td style="text-align: center">’ ‘</td>
+      <td style="text-align: center">空类型，不显示线</td>
+    </tr>
+    <tr>
+      <td>‘y’</td>
+      <td style="text-align: center">yellow</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td>‘k’</td>
+      <td style="text-align: center">black</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td>‘w’</td>
+      <td style="text-align: center">white</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>另有点类控制符如下图：</p>
+
+<p><img src="https://vip1.loli.net/2020/06/15/Jaqh9GzkPQX2Kmd.jpg" alt="图片源自网络.jpg" /></p>
+
+<h4 id="114-刻度标签和图例">1.1.4 刻度、标签和图例</h4>
+
+<p>如果图片中出现多个不容易分清的线条，还可以通过 plt.legend 为每条线生成一个用于区分的图例。</p>
+
+<p>通过 set_title 可以为图片设置标题，通过 set_xlabel 和 set_xticklabels 可以变更图片的X轴坐标,同理可以类比y轴坐标，在此不做赘述。</p>
+
+<p>加上以下代码，可以得到后图。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s">'best'</span><span class="p">)</span>
+<span class="n">ticks</span> <span class="o">=</span> <span class="n">ax</span><span class="p">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">ax</span><span class="p">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="s">'one'</span><span class="p">,</span> <span class="s">'two'</span><span class="p">,</span> <span class="s">'three'</span><span class="p">,</span> <span class="s">'four'</span><span class="p">,</span> <span class="s">'five'</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Title Testing'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'stages'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/15/GByQFJdjeN9ZMCL.jpg" alt="matplotlib5.jpg" /></p>
+
+<p>当然，我们也可以根据之前的设置统一对图例等参数进行修改：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">props</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'title'</span><span class="p">:</span> <span class="s">'Title Testing'</span>
+    <span class="s">'xlabel'</span><span class="err">：</span> <span class="s">'stages'</span>
+<span class="p">}</span>
+<span class="n">ax</span><span class="p">.</span><span class="nb">set</span><span class="p">(</span><span class="o">**</span><span class="n">props</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="115-注释与子图加工">1.1.5 注释与子图加工</h4>
+
+<p>除了标准的绘图，绘图时可能还需要在图表上绘制自己的注释，对于包含文本、箭头以及其他图形的注释，可以通过使用 text 、 arrow 和 annote 来添加注释和文本。</p>
+
+<p>另外，也可以通过 Rectangle 和 Circle 等绘制常见图形,如：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">));</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">rect</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">),</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">'k'</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="n">circ</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">Circle</span><span class="p">((</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="mf">0.15</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">'b'</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="n">pgon</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">Polygon</span><span class="p">([[</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">]],</span> <span class="n">color</span> <span class="o">=</span> <span class="s">'g'</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">pgon</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>最后，还可以使用个 rc 对 matplotlib 的设置进行更改，如：</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="n">rc</span><span class="p">(</span><span class="s">'figure'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="n">font_options</span> <span class="o">=</span> <span class="p">{</span><span class="s">'family'</span><span class="p">:</span> <span class="s">'monospace'</span><span class="p">,</span> <span class="s">'weight'</span> <span class="p">:</span> <span class="s">'bold'</span><span class="p">,</span> <span class="s">'size'</span> <span class="p">:</span> <span class="s">'small'</span><span class="p">}</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">rc</span><span class="p">(</span><span class="s">'font'</span><span class="p">,</span> <span class="o">**</span><span class="n">font_options</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>下面，将会就具体图形的绘制展开说明。</p>
+
+<h3 id="12-折线图">1.2 折线图</h3>
+
+<p>折线图的核心思想是<strong>趋势变化</strong>，作为信息最明了的图表，它也是各种图表中最容易解读的图表。</p>
+
+<ul>
+  <li>
+    <p>折线图是点、线连在一起的图表，可反映事物的发展趋势和分布情况；</p>
+  </li>
+  <li>
+    <p>适合在单个数据点不那么重要的情况下表现变化趋势、增长幅度。</p>
+  </li>
+</ul>
+
+<p>绘制折线图通常会用到 plot 工具用来绘制，而 plt.plot 的本质，实际上就是根据点连城线，也就是根据数组和列表中的x和y坐标做出点，然后将点连成线， plot 工具默认是绘制折线图的。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s">'3/11'</span><span class="p">,</span> <span class="s">'3/12'</span><span class="p">,</span> <span class="s">'3/13'</span><span class="p">,</span> <span class="s">'3/14'</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'matplotlib7.jpg'</span><span class="p">)</span>
+</code></pre></div></div>
+<p><img src="https://vip1.loli.net/2020/06/16/CpcWq67vjA8OUny.jpg" alt="matplotlib7.jpg" /></p>
+
+<p>同样，可以利用同一个X轴坐标下的不同y轴值在同一个图表上绘制多个折线图，可另外自由实践。</p>
+
+<p>plot函数的部分参数如下表所示：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>参数</th>
+      <th style="text-align: center">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>label</td>
+      <td style="text-align: center">图例/标签</td>
+    </tr>
+    <tr>
+      <td>ax</td>
+      <td style="text-align: center">绘图使用的自图对象，如没有传值则默认当前编辑的子图</td>
+    </tr>
+    <tr>
+      <td>style</td>
+      <td style="text-align: center">窜给 matplotlib 的样式字符串，如：’ko–’</td>
+    </tr>
+    <tr>
+      <td>alpha</td>
+      <td style="text-align: center">图片不透明度，从0到1</td>
+    </tr>
+    <tr>
+      <td>kind</td>
+      <td style="text-align: center">可以是’area’/’bar’/’hist’/’kde’/’line’ 等</td>
+    </tr>
+    <tr>
+      <td>logy</td>
+      <td style="text-align: center">在y轴上使用对数缩放</td>
+    </tr>
+    <tr>
+      <td>use_index</td>
+      <td style="text-align: center">使用对象索引刻度标签</td>
+    </tr>
+    <tr>
+      <td>rot</td>
+      <td style="text-align: center">刻度标签的旋转，从0到360</td>
+    </tr>
+    <tr>
+      <td>xtick/ytick</td>
+      <td style="text-align: center">用于x/y轴刻度的值</td>
+    </tr>
+    <tr>
+      <td>xlim/ylim</td>
+      <td style="text-align: center">x/y轴的范围</td>
+    </tr>
+    <tr>
+      <td>grid</td>
+      <td style="text-align: center">展示轴网络，默认打开</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>另： Series 和 DataFrame 都有一个 plot 属性，可以用于绘制基本图形。</p>
+
+<h3 id="13-柱状图条形图">1.3 柱状图/条形图</h3>
+
+<p>柱形图的核心思想是<strong>对比</strong>，是以宽度相等的条形高度或长度的差异来显示统计指标数值多少或大小的一种图形。柱形图简明、醒目，是一种常用的统计图形。</p>
+
+<p>柱形图用于显示一段时间内的数据变化或显示各项之间的比较情况。类似的图形表达为直方图，不过后者较柱状图而言更复杂(直方图可以表达两个不同的变量)，此外，相似的还有扇形统计图和折线统计图。</p>
+
+<p>1) 核心是对比，柱形图的目的是将对比信息放大，直观呈现出来；</p>
+
+<p>2) 由于直观，柱形图适合做结论的表达；</p>
+
+<p>3) 柱形图一般不用在时间维度的变化；</p>
+
+<p>4) 柱形图的数据系列和点不宜过多，否则建议改变图表形式；</p>
+
+<p>5) 柱形之间的宽度尽量小于柱形本身的宽度。</p>
+
+<p>柱形图一般使用 bar 或 barh 工具,其中 barh 为以y轴为刻度的柱形图，bar 函数的相关参数如下表：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>参数</th>
+      <th style="text-align: center">说明</th>
+      <th style="text-align: center">类型</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>x</td>
+      <td style="text-align: center">x坐标</td>
+      <td style="text-align: center">int,float</td>
+    </tr>
+    <tr>
+      <td>height</td>
+      <td style="text-align: center">条形的高度</td>
+      <td style="text-align: center">int,float</td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td style="text-align: center">宽度</td>
+      <td style="text-align: center">0~1，默认0.8</td>
+    </tr>
+    <tr>
+      <td>botton</td>
+      <td style="text-align: center">条形的起始位置</td>
+      <td style="text-align: center">也是y轴的起始坐标</td>
+    </tr>
+    <tr>
+      <td>align</td>
+      <td style="text-align: center">条形的中心位置</td>
+      <td style="text-align: center">“center”,”lege”边缘</td>
+    </tr>
+    <tr>
+      <td>color</td>
+      <td style="text-align: center">条形的颜色</td>
+      <td style="text-align: center">“r”,”b”,”g”,”#123465”，默认“b”</td>
+    </tr>
+    <tr>
+      <td>edgecolor</td>
+      <td style="text-align: center">边框的颜色</td>
+      <td style="text-align: center">同上</td>
+    </tr>
+    <tr>
+      <td>linewidth</td>
+      <td style="text-align: center">边框的宽度</td>
+      <td style="text-align: center">像素，默认无，int</td>
+    </tr>
+    <tr>
+      <td>tick_label</td>
+      <td style="text-align: center">下标的标签</td>
+      <td style="text-align: center">可以是元组类型的字符组合</td>
+    </tr>
+    <tr>
+      <td>log</td>
+      <td style="text-align: center">y轴使用科学计算法表示</td>
+      <td style="text-align: center">bool</td>
+    </tr>
+    <tr>
+      <td>orientation</td>
+      <td style="text-align: center">是竖直条还是水平条</td>
+      <td style="text-align: center">竖直：”vertical”，水平条：”horizontal”</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>简单柱形图如下图。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s">'3/11'</span><span class="p">,</span> <span class="s">'3/12'</span><span class="p">,</span> <span class="s">'3/13'</span><span class="p">,</span> <span class="s">'3/14'</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'matplotlib8.jpg'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/16/DsELP8COnUQb9JR.jpg" alt="matplotlib8.jpg" /></p>
+
+<h3 id="14-饼图">1.4 饼图</h3>
+
+<p>饼图的核心思想是<strong>分解</strong>，饼图显示一个数据系列中各项的大小与各项总和的比例。饼图中的数据点显示为整个饼图的百分比。</p>
+<ul>
+  <li>
+    <p>一般来说，数值最大的部分排在最前面，也就是12点钟方向顺时针；</p>
+  </li>
+  <li>
+    <p>饼图的细分项不宜过多，一般不超过8项；</p>
+  </li>
+  <li>
+    <p>不要制作三维的饼图，不直观；</p>
+  </li>
+  <li>
+    <p>切忌将饼图拉得过开，若要突出某一块，可单独将其拉开。</p>
+  </li>
+</ul>
+
+<p>运用 pie 函数绘制简单饼图，注意，此处 labels 为数值标签数组，即对饼图的每块扇形的标记。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>参数</th>
+      <th style="text-align: center">说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>x</td>
+      <td style="text-align: center">输入的数据用于创建一个饼图。</td>
+    </tr>
+    <tr>
+      <td>explode</td>
+      <td style="text-align: center">默认为None。如果不是None，是一个长度与x相同长度的数组，用来指定每部分的偏移量。</td>
+    </tr>
+    <tr>
+      <td>labels</td>
+      <td style="text-align: center">默认为：None。一个字符串序列作为每个饼块的标记。</td>
+    </tr>
+    <tr>
+      <td>colors</td>
+      <td style="text-align: center">默认为：None。用来标注每块饼图的matplotlib颜色参数序列。如果为None，将使用当前活动环的颜色。</td>
+    </tr>
+    <tr>
+      <td>autopct</td>
+      <td style="text-align: center">默认是None。如果不是None，是一个字符串或函数用带有数值饼图标注。</td>
+    </tr>
+    <tr>
+      <td>pctdistance</td>
+      <td style="text-align: center">默认值：0.6。每个饼切片的中心和通autopct生成的文本开始之间的比例。如果autopct是None，被忽略。</td>
+    </tr>
+    <tr>
+      <td>shadow</td>
+      <td style="text-align: center">默认值：False。在饼图下面画一个阴影。</td>
+    </tr>
+    <tr>
+      <td>labeldistance</td>
+      <td style="text-align: center">默认值：1.1。被画饼标记的直径。</td>
+    </tr>
+    <tr>
+      <td>startangle</td>
+      <td style="text-align: center">默认：None。如果不是None，从x轴逆时针旋转饼图的开始角度。</td>
+    </tr>
+    <tr>
+      <td>radius</td>
+      <td style="text-align: center">默认为：None。饼图的半径，如果半径是None，将被设置成1。</td>
+    </tr>
+    <tr>
+      <td>counterclock</td>
+      <td style="text-align: center">默认为：None。指定指针方向，顺时针或者逆时针。</td>
+    </tr>
+    <tr>
+      <td>textprops</td>
+      <td style="text-align: center">默认值为：None。传递给text对象的字典参数。</td>
+    </tr>
+    <tr>
+      <td>center</td>
+      <td style="text-align: center">默认值：(0,0)。图标中心位置。</td>
+    </tr>
+    <tr>
+      <td>frame</td>
+      <td style="text-align: center">默认值：False。如果是true，绘制带有表的轴框架。</td>
+    </tr>
+    <tr>
+      <td>rotatelabels</td>
+      <td style="text-align: center">默认为：False。如果为True，旋转每个label到指定的角度。</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="s">'3/11'</span><span class="p">,</span> <span class="s">'3/12'</span><span class="p">,</span> <span class="s">'3/13'</span><span class="p">,</span> <span class="s">'3/14'</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">pie</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'matplotlib9.jpg'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/16/6DaIyFBcUZsPinf.jpg" alt="matplotlib9.jpg" /></p>
+
+<p>其实，个人觉得饼图在实际场景中应当尽可能少的使用(因人眼对面积大小不敏感），而且对指标的分解柱形图同样能胜任，且远远清晰于饼图；当且仅当，用于反应单个模块占整体比重时，适合用饼图。</p>
+
+<h3 id="15-散点图和点图">1.5 散点图和点图</h3>
+
+<p>散点图的核心思想是<strong>研究</strong>，它是用于观测数据的相关性的，有正相关，负相关，不相关，是典型的研究型图表，适合用于发现变量间的关系与规律，但是不适合用于清晰表达信息的场景。</p>
+
+<p>绘制散点图会用到 scatter 工具，下面是一个简单的随机点图。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">111</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'matplotlib10.jpg'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/16/PI5ZV3lDGNUA71u.jpg" alt="matplotlib10.jpg" /></p>
+
+<p>其中，x/y 是点的横纵坐标，s 是点的面积，alpha 是点的透明度，另外，还可以设置 ‘c’ 为点的颜色，‘ marker’ 是点的形状等。</p>
+
+<p>还可以通过 seaborn 的 regplot 方法，该方法可以绘制出散点图，并拟合出一条线性回归线，可以自主尝试。</p>
+
+<ul>
+  <li>
+    <p>散点图作为研究型图表，经常在数据分析前期被使用，在报告中很少见；</p>
+  </li>
+  <li>
+    <p>散点图不够直观，大多时候不能直接表达结论；</p>
+  </li>
+  <li>
+    <p>散点图对于业务敏感度和数据意识要求较高；</p>
+  </li>
+  <li>
+    <p>散点图只是入门的钥匙，发现规律只是分析的切入口。</p>
+  </li>
+</ul>
+
+<h4 id="-三维散点图">-三维散点图</h4>
+
+<p>三维散点图相较于二维散点图而言所用函数参数没有太大差别，但是 mplot3D 能让图表在描述多维度关系中更加清晰明确。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits</span> <span class="kn">import</span> <span class="n">mplot3d</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">mplot3d</span><span class="p">.</span><span class="n">Axes3D</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">111</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'matplotlib11.jpg'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/16/tlyVBg5xuNSQCTW.jpg" alt="matplotlib11.jpg" /></p>
+
+<h3 id="16-热力图">1.6 热力图</h3>
+
+<p>热力图是以特殊高亮的形式显示访客热衷的页面区域和访客所在的地理区域的图示。多用于统计用户或个体行为，功能具备大多数的流量统计软件不具备的优势，即，通过色差、亮度来展示数据的差异、易于理解。</p>
+
+<p>plt.imshow 不同于 plt.show 是用于绘制热力图的 matplotlib 工具，</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>参数</th>
+      <th style="text-align: center">说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>x</td>
+      <td style="text-align: center">图像数据</td>
+    </tr>
+    <tr>
+      <td>cmap</td>
+      <td style="text-align: center">将标量数据映射到色彩图</td>
+    </tr>
+    <tr>
+      <td>aspect</td>
+      <td style="text-align: center">控制轴的纵横比。该参数可能使图像失真，即像素不是方形的</td>
+    </tr>
+    <tr>
+      <td>alpha</td>
+      <td style="text-align: center">alpha值，介于0（透明）和1（不透明）之间</td>
+    </tr>
+    <tr>
+      <td>extent</td>
+      <td style="text-align: center">数据坐标中左下角和右上角的位置</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">999</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">5</span> <span class="o">+</span> <span class="n">y</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s">'low'</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s">'jet'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'matplotlib12.jpg'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/16/6rFU2CilzRkGmNP.jpg" alt="matplotlib12.jpg" /></p>
+
+<h3 id="17-等高线图">1.7 等高线图</h3>
+
+<p>contour 和 contourf 都是画三维等高线图的，不同点在于contourf会对等高线间的区域进行填充,运用简单数据绘制等高线图。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits</span> <span class="kn">import</span> <span class="n">mplot3d</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">999</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">5</span> <span class="o">+</span> <span class="n">y</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">cntr</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">contour</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s">'black'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s">'jet'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">clabel</span><span class="p">(</span><span class="n">cntr</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s">'%.1f'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'matplotlib13.jpg'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/16/qWDVrLCJISgQhbn.jpg" alt="matplotlib13.jpg" /></p>
+
+<h3 id="18-三维热力图">1.8 三维热力图</h3>
+
+<p>类似热力图，虽然小众但是依旧非常直观简明。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits</span> <span class="kn">import</span> <span class="n">mplot3d</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">999</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">5</span> <span class="o">+</span> <span class="n">y</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">mplot3d</span><span class="p">.</span><span class="n">Axes3D</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">rstride</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">cstride</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s">'jet'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'matplotlib14.jpg'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/16/DrMjR6otmZXza5y.jpg" alt="matplotlib14.jpg" /></p>
+
+<p>之后的图形绘制将会用到 seaborn 或 pandas 。</p>
+
+<h3 id="19-直方图和密度图">1.9 直方图和密度图</h3>
+
+<p>直方图和密度图，都是矩阵图或者柱形图的变种，区别在与数据是否具有连续性。</p>
+
+<p>直方图是一种条形图，用于给出值得频率的离散显示。数据点被分成离散的，均匀间隔的箱，并且绘制每个箱中数据点的数量，我们可以使用 Series 的 plot.hist 工具制作直方图。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>参数</th>
+      <th style="text-align: center">说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>x</td>
+      <td style="text-align: center">这个参数是指定每个bin(箱子)分布的数据,对应x轴</td>
+    </tr>
+    <tr>
+      <td>bins</td>
+      <td style="text-align: center">这个参数指定bin(箱子)的个数,也就是总共有几条条状图</td>
+    </tr>
+    <tr>
+      <td>normes</td>
+      <td style="text-align: center">这个参数指定密度,也就是每个条状图的占比例比,默认为1</td>
+    </tr>
+    <tr>
+      <td>color</td>
+      <td style="text-align: center">这个指定条状图的颜色</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>下面是一个简单的直方图。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">Series</span><span class="p">,</span> <span class="n">DataFrame</span>
+
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">666</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>
+<span class="n">s</span><span class="p">.</span><span class="n">hist</span><span class="p">(</span><span class="n">rwidth</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s">'stepfilled'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'matplotlib15.jpg'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/16/qs3RYEwmXtIQHPr.jpg" alt="matplotlib15.jpg" /></p>
+
+<p>密度图是一种与直方图相关的图表类型，他通过计算可能产生观测数据的连续概率分布估计而产生，通常是一种类似正态分布的简单分布，密度图也被称为内核密度估计图（KDE）。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">Series</span><span class="p">,</span> <span class="n">DataFrame</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>
+<span class="n">s</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s">'kde'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'matplotlib16.jpg'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/16/Rh8gwQcF5pTYlLz.jpg" alt="matplotlib16.jpg" /></p>
+
+<p>此外，还可以使用 distplot 绘制直方图和连续密度估计。</p>
+
+<h3 id="110-箱型图">1.10 箱型图</h3>
+
+<p>箱型图、小提琴图和蜂群图都是类似用作显示一组数据分散情况资料的统计图，主要用于反映原始数据分布的特征，还可以进行多组数据分布特征的比较，其中小提琴图和蜂群图是箱型图的变种，可用作箱型图的替代，下面是三种图像的简单图片，因时间限制不做详述。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">import</span> <span class="nn">seaborn</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">bunch</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">bunch</span><span class="p">.</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">bunch</span><span class="p">.</span><span class="n">target</span>
+
+<span class="n">seaborn</span><span class="p">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'matplotlib17.jpg'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/16/3lfg7MkqF5JenGz.jpg" alt="matplotlib17.jpg" /></p>
+
+<h4 id="-小提琴图">-小提琴图</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">import</span> <span class="nn">seaborn</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">bunch</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">bunch</span><span class="p">.</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">bunch</span><span class="p">.</span><span class="n">target</span>
+
+<span class="n">seaborn</span><span class="p">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'matplotlib18.jpg'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/16/s7KP2MhLTkANJFV.jpg" alt="matplotlib18.jpg" /></p>
+
+<h4 id="-蜂群图">-蜂群图</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">import</span> <span class="nn">seaborn</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">bunch</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">bunch</span><span class="p">.</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">bunch</span><span class="p">.</span><span class="n">target</span>
+
+<span class="n">seaborn</span><span class="p">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">'matplotlib19.jpg'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/16/Jr2pml3xEFPnIY4.jpg" alt="matplotlib19.jpg" /></p>
+
+<h3 id="111-小结">1.11 小结</h3>
+
+<p>matplotlib 作为 Python 数据可视化的泰斗，你可以仅仅只用一丢丢甚至一行命令行来创建一个简单的平面图，除了可以方便的绘制折线图、条形图、柱形图散点图等基础图形，还可以绘制复杂的图形。</p>
+
+<p>附：pyplot 的所有基础图表如下。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>函数</th>
+      <th style="text-align: center">说明</th>
+      <th style="text-align: center">函数</th>
+      <th style="text-align: center">说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>plt.plot()</td>
+      <td style="text-align: center">绘制坐标图</td>
+      <td style="text-align: center">plt.boxplot()</td>
+      <td style="text-align: center">绘制箱型图</td>
+    </tr>
+    <tr>
+      <td>plt.bar()</td>
+      <td style="text-align: center">绘制条形图</td>
+      <td style="text-align: center">plt.barh()</td>
+      <td style="text-align: center">绘制横向条形图</td>
+    </tr>
+    <tr>
+      <td>plt.polar</td>
+      <td style="text-align: center">绘制极坐标图</td>
+      <td style="text-align: center">plt.pie()</td>
+      <td style="text-align: center">绘制饼图</td>
+    </tr>
+    <tr>
+      <td>plt.psd()</td>
+      <td style="text-align: center">绘制功率谱密度图</td>
+      <td style="text-align: center">plt.specgram()</td>
+      <td style="text-align: center">绘制谱图</td>
+    </tr>
+    <tr>
+      <td>plt.cohere()</td>
+      <td style="text-align: center">绘制相关性函数</td>
+      <td style="text-align: center">plt.scatter()</td>
+      <td style="text-align: center">绘制散点图</td>
+    </tr>
+    <tr>
+      <td>plt.step()</td>
+      <td style="text-align: center">绘制步阶图</td>
+      <td style="text-align: center">plt.hist()</td>
+      <td style="text-align: center">绘制直方图</td>
+    </tr>
+    <tr>
+      <td>plt.contour()</td>
+      <td style="text-align: center">绘制等值图</td>
+      <td style="text-align: center">plt.vlinese()</td>
+      <td style="text-align: center">绘制垂直图</td>
+    </tr>
+    <tr>
+      <td>plt.stern()</td>
+      <td style="text-align: center">绘制柴火图</td>
+      <td style="text-align: center">plt.plot_date()</td>
+      <td style="text-align: center">绘制数据日期</td>
+    </tr>
+    <tr>
+      <td>plt.clabel()</td>
+      <td style="text-align: center">绘制轮廓图</td>
+      <td style="text-align: center">plt.hist2D()</td>
+      <td style="text-align: center">绘制二街直方图</td>
+    </tr>
+    <tr>
+      <td>pltstackplot()</td>
+      <td style="text-align: center">绘制堆积面积图</td>
+      <td style="text-align: center">plt.Violinplot()</td>
+      <td style="text-align: center">绘制小提琴图</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>下面，将会介绍 pyechart 库。</p>
+
+<h2 id="2-数据可视化--pyechart-篇">2 <strong>数据可视化 – pyechart 篇</strong></h2>
+
+<h3 id="21-pyechart">2.1 pyechart</h3>
+
+<p>Pyecharts 是一个用于生成 Echarts 图表的类库，可以与 Python 进行对接，方便在 Python 中直接使用该数据生成图，作为 Python 的 matplotlib 库的一种补充，弥补了强大的 Python 在可视化的稍稍简陋。</p>
+
+<p><img src="https://vip1.loli.net/2020/06/16/UuQVMdYmFTxWakD.jpg" alt="图片源自网络2.jpg" /></p>
+
+<p>pyechart 可以绘制的图片有二十多种，包括Bar（柱状图/条形图），Bar3D（3D 柱状图），Boxplot（箱形图），EffectScatter（带有涟漪特效动画的散点图），Funnel（漏斗图），Gauge（仪表盘），Geo（地理坐标系），Graph（关系图），HeatMap（热力图），Kline（K线图），Line（折线/面积图），Line3D（3D 折线图），Liquid（水球图），Map（地图），Parallel（平行坐标系）Pie（饼图），Polar（极坐标系），Radar（雷达图），Sankey（桑基图），Scatter（散点图），Scatter3D（3D 散点图），ThemeRiver（主题河流图），WordCloud（词云图）等。</p>
+<h4 id="-绘图基本步骤">-绘图基本步骤</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pyecharts</span> <span class="kn">import</span> <span class="n">Chart</span><span class="p">,</span><span class="n">configure</span> 
+<span class="n">configure</span><span class="p">(</span><span class="n">output_image</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>    
+<span class="n">chart</span> <span class="o">=</span> <span class="n">Chart</span><span class="p">(</span><span class="s">'主标题'</span><span class="p">,</span><span class="s">'副标题'</span><span class="p">)</span>
+<span class="n">attr</span> <span class="o">=</span> <span class="p">[</span><span class="s">'x1'</span><span class="p">,</span><span class="s">'x2'</span><span class="p">,</span><span class="s">'x3'</span><span class="p">,</span><span class="s">'x4'</span><span class="p">]</span>
+<span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="n">y1</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="n">y3</span><span class="p">,</span><span class="n">y4</span><span class="p">]</span>
+<span class="n">chart</span><span class="p">.</span><span class="n">use_theme</span><span class="p">()</span>       
+<span class="n">chart</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">'图标'</span><span class="p">,</span><span class="n">attr</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> 
+<span class="n">chart</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">path</span> <span class="o">=</span> <span class="s">''</span><span class="p">)</span>     
+</code></pre></div></div>
+<p>常用参数可以在add()中设置，实现各种需求：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>参数</th>
+      <th style="text-align: center">说明</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>is stack</td>
+      <td style="text-align: center">是否堆积</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>is convert</td>
+      <td style="text-align: center">x,y轴是否交换</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>is_legend_show</td>
+      <td style="text-align: center">是否显示图例</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>legend_orient</td>
+      <td style="text-align: center">图列方向，有’horizontal’（默认水平显示），’vertical’（垂直）可选</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>legend_pos</td>
+      <td style="text-align: center">图例位置，有’left’, ‘center’（默认）, ‘right’可选</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>legend_text_size/color</td>
+      <td style="text-align: center">图例名称字体大小/颜色</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>is_x/yaxis_show</td>
+      <td style="text-align: center">是否显示x/y轴</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>x/yaxis_interval</td>
+      <td style="text-align: center">x/y轴标签的显示间隔</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>x/yaxis_min/max</td>
+      <td style="text-align: center">x/y轴刻度最小值/最大值</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>x/yaxis_label_textsize/textcolor</td>
+      <td style="text-align: center">x/y轴标签字体大小/颜色</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>xaxis_rotate</td>
+      <td style="text-align: center">x轴标签旋转角度</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>is_splitline_show</td>
+      <td style="text-align: center">是否显示网格线</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>is_label_show</td>
+      <td style="text-align: center">是否显示标签</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>label_pos</td>
+      <td style="text-align: center">标签的位置，有’top’(默认), ‘left’, ‘right’, ‘bottom’, ‘inside’,’outside’可选</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>label_text_color/size</td>
+      <td style="text-align: center">标签字体颜色/大小</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>is_random</td>
+      <td style="text-align: center">是否随机排列颜色列表</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>label_color</td>
+      <td style="text-align: center">自定义标签颜色</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>mark_point/line</td>
+      <td style="text-align: center">标记点/线，默认有’min’, ‘max’, ‘average’可选。可自定义标记点线，具体格式如</td>
+      <td>[{‘coord’: [x, y], ‘name’: ‘目标标记点’}]，记住格式是一个列表</td>
+    </tr>
+    <tr>
+      <td>mark_point/line_symbol</td>
+      <td style="text-align: center">标记点/线图形，默认为’pin’（点），有’circle’（圆形）, ‘rect’（正方形）, ‘roundRect’（圆角正方形）, ‘triangle’（三角形）, ‘diamond’（菱形）, ‘pin’（点）, ‘arrow’（箭头）可选</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>mark_point/line_symbolsize</td>
+      <td style="text-align: center">标记点/线图形大小</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>mark_point/line_textcolor</td>
+      <td style="text-align: center">标记点/线字体颜色</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="-图表的保存">-图表的保存</h4>
+
+<p>render 会默认将图表输出为html格式，可在浏览器打开。但是想要插入到ppt当中，清晰度会下降，因此需要将其转化为其他格式，如 svg/jpeg/png/pdf/gif 等等。要实现格式的转换，需要安装：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Nodejs
+$ npm install -g phantomjs-prebuilt
+$ pip install pyecharts-snapshot
+</code></pre></div></div>
+
+<p>下面，将会简述几种常用图表和一些 pyechart 特色的图例。</p>
+
+<h3 id="22-柱状图">2.2 柱状图</h3>
+
+<p>柱状图及其作用在上边对 matplotlib 的介绍中已经介绍完毕，不复赘述。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pyecharts</span> <span class="kn">import</span> <span class="n">Bar</span>
+
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Jan"</span><span class="p">,</span> <span class="s">"Feb"</span><span class="p">,</span> <span class="s">"Mar"</span><span class="p">,</span> <span class="s">"Apr"</span><span class="p">,</span> <span class="s">"May"</span><span class="p">,</span> <span class="s">"Jun"</span><span class="p">,</span> <span class="s">"Jul"</span><span class="p">,</span> <span class="s">"Aug"</span><span class="p">,</span> <span class="s">"Sep"</span><span class="p">,</span> <span class="s">"Oct"</span><span class="p">,</span> <span class="s">"Nov"</span><span class="p">,</span> <span class="s">"Dec"</span><span class="p">]</span>
+
+<span class="n">data1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">4.9</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">23.2</span><span class="p">,</span> <span class="mf">25.6</span><span class="p">,</span> <span class="mf">76.7</span><span class="p">,</span> <span class="mf">135.6</span><span class="p">,</span> <span class="mf">162.2</span><span class="p">,</span> <span class="mf">32.6</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">6.4</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">]</span>
+<span class="n">data2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.6</span><span class="p">,</span> <span class="mf">5.9</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="mf">26.4</span><span class="p">,</span> <span class="mf">28.7</span><span class="p">,</span> <span class="mf">70.7</span><span class="p">,</span> <span class="mf">175.6</span><span class="p">,</span> <span class="mf">182.2</span><span class="p">,</span> <span class="mf">48.7</span><span class="p">,</span> <span class="mf">18.8</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">]</span>
+
+<span class="n">bar</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">(</span><span class="s">"柱状图"</span><span class="p">,</span> <span class="s">"一年的降水量与蒸发量"</span><span class="p">)</span>
+<span class="n">bar</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">"降水量"</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">data1</span><span class="p">,</span> <span class="n">mark_line</span><span class="o">=</span><span class="p">[</span><span class="s">"average"</span><span class="p">],</span> <span class="n">mark_point</span><span class="o">=</span><span class="p">[</span><span class="s">"max"</span><span class="p">,</span> <span class="s">"min"</span><span class="p">])</span>
+<span class="n">bar</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">"蒸发量"</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">data2</span><span class="p">,</span> <span class="n">mark_line</span><span class="o">=</span><span class="p">[</span><span class="s">"average"</span><span class="p">],</span> <span class="n">mark_point</span><span class="o">=</span><span class="p">[</span><span class="s">"max"</span><span class="p">,</span> <span class="s">"min"</span><span class="p">])</span>
+<span class="n">bar</span><span class="p">.</span><span class="n">render</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/16/OxFErn8DBJp3oZM.png" alt="柱状图.png" /></p>
+
+<p>下面列出 Bar.add（）相关参数：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>bar.add()参数</th>
+      <th style="text-align: center">说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>name</td>
+      <td style="text-align: center">图例名称</td>
+    </tr>
+    <tr>
+      <td>x_axis</td>
+      <td style="text-align: center">X轴数据</td>
+    </tr>
+    <tr>
+      <td>y_axis</td>
+      <td style="text-align: center">Y轴数据</td>
+    </tr>
+    <tr>
+      <td>is_stack</td>
+      <td style="text-align: center">数据堆叠,同个类目轴上系列配置相同的stack值可以堆叠放置</td>
+    </tr>
+    <tr>
+      <td>bar_category_gap</td>
+      <td style="text-align: center">类目轴柱状距离，默认20%</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>柱状图可以升级为堆叠（柱状）图。</p>
+
+<h3 id="23-饼图">2.3 饼图</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pyecharts</span> <span class="kn">import</span> <span class="n">Pie</span>
+
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Jan"</span><span class="p">,</span> <span class="s">"Feb"</span><span class="p">,</span> <span class="s">"Mar"</span><span class="p">,</span> <span class="s">"Apr"</span><span class="p">,</span> <span class="s">"May"</span><span class="p">,</span> <span class="s">"Jun"</span><span class="p">,</span> <span class="s">"Jul"</span><span class="p">,</span> <span class="s">"Aug"</span><span class="p">,</span> <span class="s">"Sep"</span><span class="p">,</span> <span class="s">"Oct"</span><span class="p">,</span> <span class="s">"Nov"</span><span class="p">,</span> <span class="s">"Dec"</span><span class="p">]</span>
+<span class="n">data1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">4.9</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">23.2</span><span class="p">,</span> <span class="mf">25.6</span><span class="p">,</span> <span class="mf">76.7</span><span class="p">,</span> <span class="mf">135.6</span><span class="p">,</span> <span class="mf">162.2</span><span class="p">,</span> <span class="mf">32.6</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">6.4</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">]</span>
+<span class="n">data2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.6</span><span class="p">,</span> <span class="mf">5.9</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="mf">26.4</span><span class="p">,</span> <span class="mf">28.7</span><span class="p">,</span> <span class="mf">70.7</span><span class="p">,</span> <span class="mf">175.6</span><span class="p">,</span> <span class="mf">182.2</span><span class="p">,</span> <span class="mf">48.7</span><span class="p">,</span> <span class="mf">18.8</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">]</span>
+
+<span class="n">pie</span> <span class="o">=</span> <span class="n">Pie</span><span class="p">(</span><span class="s">"饼状图"</span><span class="p">,</span> <span class="s">"一年的降水量与蒸发量"</span><span class="p">,</span> <span class="n">title_pos</span><span class="o">=</span><span class="s">'center'</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">900</span><span class="p">)</span>
+<span class="n">pie</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">"降水量"</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">data1</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="n">is_legend_show</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">pie</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">"蒸发量"</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">data2</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="p">[</span><span class="mi">75</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="n">is_legend_show</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">is_label_show</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">pie</span><span class="p">.</span><span class="n">render</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/16/eZayTuHYplFvI3d.png" alt="饼状图.png" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>参数</th>
+      <th style="text-align: center">说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>attr</td>
+      <td style="text-align: center">属性名称</td>
+    </tr>
+    <tr>
+      <td>radius</td>
+      <td style="text-align: center">饼图半径，数组第一项是内径，第二项是外径，默认[0,75,]</td>
+    </tr>
+    <tr>
+      <td>center</td>
+      <td style="text-align: center">圆心，数组第一项是X轴，第二项是Y轴，默认[50,50]</td>
+    </tr>
+    <tr>
+      <td>rosetype</td>
+      <td style="text-align: center">是否展示成南丁格尔图，用过半径区分数据大小，radius和area两种模式，默认radius</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="24-折线图">2.4 折线图</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pyecharts</span> <span class="kn">import</span> <span class="n">Line</span>
+
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Jan"</span><span class="p">,</span> <span class="s">"Feb"</span><span class="p">,</span> <span class="s">"Mar"</span><span class="p">,</span> <span class="s">"Apr"</span><span class="p">,</span> <span class="s">"May"</span><span class="p">,</span> <span class="s">"Jun"</span><span class="p">,</span> <span class="s">"Jul"</span><span class="p">,</span> <span class="s">"Aug"</span><span class="p">,</span> <span class="s">"Sep"</span><span class="p">,</span> <span class="s">"Oct"</span><span class="p">,</span> <span class="s">"Nov"</span><span class="p">,</span> <span class="s">"Dec"</span><span class="p">]</span>
+<span class="n">data1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">4.9</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">23.2</span><span class="p">,</span> <span class="mf">25.6</span><span class="p">,</span> <span class="mf">76.7</span><span class="p">,</span> <span class="mf">135.6</span><span class="p">,</span> <span class="mf">162.2</span><span class="p">,</span> <span class="mf">32.6</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">6.4</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">]</span>
+<span class="n">data2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.6</span><span class="p">,</span> <span class="mf">5.9</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="mf">26.4</span><span class="p">,</span> <span class="mf">28.7</span><span class="p">,</span> <span class="mf">70.7</span><span class="p">,</span> <span class="mf">175.6</span><span class="p">,</span> <span class="mf">182.2</span><span class="p">,</span> <span class="mf">48.7</span><span class="p">,</span> <span class="mf">18.8</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">]</span>
+
+<span class="n">line</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="s">"折线图"</span><span class="p">,</span> <span class="s">"一年的降水量与蒸发量"</span><span class="p">)</span>
+<span class="n">line</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">"降水量"</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">data1</span><span class="p">,</span> <span class="n">is_label_show</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">line</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">"蒸发量"</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">data2</span><span class="p">,</span> <span class="n">is_label_show</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">line</span><span class="p">.</span><span class="n">render</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/16/weVpiSCYxlRmubU.png" alt="折线图.png" /></p>
+
+<p>下列举函数部分参数，可供参考。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>参数</th>
+      <th style="text-align: center">说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>is_symbol_show</td>
+      <td style="text-align: center">是否显示标记图形</td>
+    </tr>
+    <tr>
+      <td>is_smooth</td>
+      <td style="text-align: center">是否显示平滑曲线</td>
+    </tr>
+    <tr>
+      <td>is_stack</td>
+      <td style="text-align: center">是否数据堆叠</td>
+    </tr>
+    <tr>
+      <td>is_step</td>
+      <td style="text-align: center">是否是阶梯线</td>
+    </tr>
+    <tr>
+      <td>is_fill</td>
+      <td style="text-align: center">是否填充曲线区域面积</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>折线图可升级为面积图。</p>
+
+<h3 id="25-雷达图">2.5 雷达图</h3>
+
+<p>因为雷达图所需要的数据不同，需要重新处理.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pyecharts</span> <span class="kn">import</span> <span class="n">Radar</span>
+
+<span class="n">radar</span> <span class="o">=</span> <span class="n">Radar</span><span class="p">(</span><span class="s">"雷达图"</span><span class="p">,</span> <span class="s">"一年的降水量与蒸发量"</span><span class="p">)</span>
+<span class="n">radar_data1</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">4.9</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">23.2</span><span class="p">,</span> <span class="mf">25.6</span><span class="p">,</span> <span class="mf">76.7</span><span class="p">,</span> <span class="mf">135.6</span><span class="p">,</span> <span class="mf">162.2</span><span class="p">,</span> <span class="mf">32.6</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">6.4</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">]]</span>
+<span class="n">radar_data2</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">2.6</span><span class="p">,</span> <span class="mf">5.9</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="mf">26.4</span><span class="p">,</span> <span class="mf">28.7</span><span class="p">,</span> <span class="mf">70.7</span><span class="p">,</span> <span class="mf">175.6</span><span class="p">,</span> <span class="mf">182.2</span><span class="p">,</span> <span class="mf">48.7</span><span class="p">,</span> <span class="mf">18.8</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">]]</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s">"Jan"</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="s">"Feb"</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="s">"Mar"</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">"Apr"</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="s">"May"</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="s">"Jun"</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">"Jul"</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="p">(</span><span class="s">"Aug"</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="p">(</span><span class="s">"Sep"</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">"Oct"</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="s">"Nov"</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="s">"Dec"</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">radar</span><span class="p">.</span><span class="n">config</span><span class="p">(</span><span class="n">schema</span><span class="p">)</span>
+<span class="n">radar</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">"降水量"</span><span class="p">,</span> <span class="n">radar_data1</span><span class="p">)</span>
+<span class="n">radar</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">"蒸发量"</span><span class="p">,</span> <span class="n">radar_data2</span><span class="p">,</span> <span class="n">item_color</span><span class="o">=</span><span class="s">"#1C86EE"</span><span class="p">)</span>
+<span class="n">radar</span><span class="p">.</span><span class="n">render</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/16/Z32RHAg5r7l8baj.png" alt="雷达图.png" /></p>
+
+<h3 id="26-地图类图表">2.6 地图类图表</h3>
+
+<p>地图类图表是 pyechart 的一大特色，也就是将类似热点图的图表覆盖在已有的地图库之上，在可视化进程上又更近了一步，非常好玩，而在使用之前，同样的也需要安装地图库，打开 cmd 控制台，键入如下：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ pip install echarts-countries-pypkg
+$ pip install echarts-china-provinces-pypkg
+$ pip install echarts-china-cities-pypkg
+$ pip install echarts-china-counties-pypkg
+$ pip install echarts-china-misc-pypkg
+</code></pre></div></div>
+
+<p>使用 pyechart 绘制类似图片，需要用到 geo.add, 相关参数如下：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>参数</th>
+      <th style="text-align: center">说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>attr</td>
+      <td style="text-align: center">标签名称</td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td style="text-align: center">数值</td>
+    </tr>
+    <tr>
+      <td>visual_range</td>
+      <td style="text-align: center">可视化的数值范围</td>
+    </tr>
+    <tr>
+      <td>symbol_size</td>
+      <td style="text-align: center">散点的大小</td>
+    </tr>
+    <tr>
+      <td>visual_text_color</td>
+      <td style="text-align: center">标签颜色</td>
+    </tr>
+    <tr>
+      <td>is_piecewise</td>
+      <td style="text-align: center">颜色是否分段显示（False为渐变，True为分段）</td>
+    </tr>
+    <tr>
+      <td>is_visualmap</td>
+      <td style="text-align: center">是否映射（数量与颜色深浅是否挂钩）</td>
+    </tr>
+    <tr>
+      <td>maptype</td>
+      <td style="text-align: center">地图类型，可以是中国地图，省地图，市地图等等</td>
+    </tr>
+    <tr>
+      <td>visual_split_number</td>
+      <td style="text-align: center">可视化数值分组</td>
+    </tr>
+    <tr>
+      <td>geo_cities_coords</td>
+      <td style="text-align: center">自定义的经纬度</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>下面是运用 geo 函数的两个例子：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pyecharts</span> <span class="kn">import</span> <span class="n">Map</span>
+<span class="n">value</span> <span class="o">=</span> <span class="p">[</span><span class="mi">155</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">78</span><span class="p">]</span>
+<span class="n">attr</span> <span class="o">=</span> <span class="p">[</span><span class="s">'珠海市'</span><span class="p">,</span> <span class="s">'汕头市'</span><span class="p">,</span> <span class="s">'广州市'</span><span class="p">,</span> <span class="s">'肇庆市'</span><span class="p">]</span>
+<span class="nb">map</span> <span class="o">=</span> <span class="n">Map</span><span class="p">(</span><span class="s">'广东地图示例'</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1200</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+<span class="nb">map</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">''</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">maptype</span><span class="o">=</span><span class="s">'广东'</span><span class="p">,</span>
+        <span class="n">is_visualmap</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">visual_text_color</span><span class="o">=</span><span class="s">'#000'</span><span class="p">,</span>
+        <span class="n">is_label_show</span><span class="o">=</span><span class="bp">True</span>
+        <span class="p">)</span>
+<span class="nb">map</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="s">'map01.html'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/16/HAYFsCBjqVlt1Q2.png" alt="广东地图示例.png" /></p>
+
+<p>上图是广东省地图上用颜色标记出的四个市。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pyecharts</span> <span class="kn">import</span> <span class="n">Map</span>
+<span class="n">value</span> <span class="o">=</span> <span class="p">[</span><span class="mi">155</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">78</span><span class="p">]</span>
+<span class="n">attr</span> <span class="o">=</span> <span class="p">[</span><span class="s">'福建'</span><span class="p">,</span> <span class="s">'江苏'</span><span class="p">,</span> <span class="s">'北京'</span><span class="p">,</span> <span class="s">'上海'</span><span class="p">]</span>
+<span class="nb">map</span> <span class="o">=</span> <span class="n">Map</span><span class="p">(</span><span class="s">'全国地图示例'</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1200</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+<span class="nb">map</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">''</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">maptype</span><span class="o">=</span><span class="s">'china'</span><span class="p">)</span>
+<span class="nb">map</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="s">'map01.html'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/16/rXZvMext9dLSB5l.png" alt="全国地图示例.png" /></p>
+
+<p>上图是中国地图上用圆点标记处的四个省份。</p>
+
+<h3 id="27-图像叠加">2.7 图像叠加</h3>
+
+<p>同样的 pyechart 也可以和 matplotlib 一样运用图像的堆叠，将统一数组下的多个图片置于同一坐标图中，以达到更好的可视化作用。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pyecharts</span> <span class="kn">import</span> <span class="n">Bar</span><span class="p">,</span> <span class="n">Line</span><span class="p">,</span> <span class="n">Overlap</span>
+<span class="n">attr</span> <span class="o">=</span> <span class="p">[</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">,</span> <span class="s">'D'</span><span class="p">,</span> <span class="s">'E'</span><span class="p">,</span> <span class="s">'F'</span><span class="p">]</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">]</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">38</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">70</span><span class="p">]</span>
+<span class="n">bar</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">(</span><span class="s">'Line - Bar示例'</span><span class="p">)</span>
+<span class="n">bar</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">'bar'</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">v1</span><span class="p">)</span>
+<span class="n">line</span> <span class="o">=</span> <span class="n">Line</span><span class="p">()</span>
+<span class="n">line</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">'line'</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span>
+
+<span class="n">overlop</span> <span class="o">=</span> <span class="n">Overlap</span><span class="p">()</span>
+<span class="n">overlop</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">bar</span><span class="p">)</span>
+<span class="n">overlop</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<span class="n">overlop</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="s">'line-bar.html'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="28-词云">2.8 词云</h3>
+
+<p>词云的绘制也是 pyechart 的另一大特点，在特定情况下可以起到更加好的说明作用，也非常好玩。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pyecharts</span> <span class="kn">import</span> <span class="n">WordCloud</span>
+<span class="n">name</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">'Though'</span><span class="p">,</span> <span class="s">'the answer'</span><span class="p">,</span> <span class="s">'this question'</span><span class="p">,</span>
+    <span class="s">'may at first'</span><span class="p">,</span> <span class="s">'seem to border'</span><span class="p">,</span> <span class="s">'on the'</span><span class="p">,</span>
+    <span class="s">'absurd'</span><span class="p">,</span> <span class="s">'reflection'</span><span class="p">,</span> <span class="s">'will show'</span><span class="p">,</span> <span class="s">'that there'</span><span class="p">,</span>
+    <span class="s">'is a'</span><span class="p">,</span> <span class="s">'good deal'</span><span class="p">,</span> <span class="s">'more in'</span><span class="p">,</span> <span class="s">'it than meets'</span><span class="p">,</span> <span class="s">'the eye'</span>
+<span class="p">]</span>
+<span class="n">value</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">6189</span><span class="p">,</span> <span class="mi">4556</span><span class="p">,</span> <span class="mi">2356</span><span class="p">,</span> <span class="mi">2233</span><span class="p">,</span>
+         <span class="mi">1895</span><span class="p">,</span> <span class="mi">1456</span><span class="p">,</span> <span class="mi">1255</span><span class="p">,</span> <span class="mi">981</span><span class="p">,</span> <span class="mi">875</span><span class="p">,</span>
+         <span class="mi">542</span><span class="p">,</span> <span class="mi">462</span><span class="p">,</span> <span class="mi">361</span><span class="p">,</span> <span class="mi">265</span><span class="p">,</span> <span class="mi">125</span><span class="p">]</span>
+<span class="n">worldcloud</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">1300</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">620</span><span class="p">)</span>
+<span class="n">worldcloud</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">''</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">word_size_range</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+<span class="n">worldcloud</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="s">'worldcloud01.html'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://vip1.loli.net/2020/06/16/2Zob3x1XE8L97ep.png" alt="下载.png" /></p>
+
+<h3 id="29-小结">2.9 小结</h3>
+
+<p>pyechart 作为对 matplotlib 的补充可以说是非常的强大，除了好玩的词云和地图类图片，还有类似于漏斗图的强大的特色图例未能列出，不可否认，在实用性和美观上，pyechart 都可以与 matplotlib 这个泰斗一战，有些地方甚至也超过过这个泰斗，成为 Python 数据可视化的一个首选！</p>
+
+<h2 id="3-其他常用工具及其简介">3 其他常用工具及其简介</h2>
+
+<h3 id="31-seaborn">3.1 seaborn</h3>
+
+<p>Seaborn 同 Matplotlib 一样，也是 Python 进行数据可视化分析的重要第三方包，但是 seaborn 在 matplotlib 的基础上进行了更高级的 API 封装，是的作图更加容易，图形也更加漂亮。Seaborn 是基于 matplotlib 产生的莫阔，专攻统计可视化，可以同 Pandas 无缝连接，使初学者更容易上手。相对于 matplotlib 而言， seaborn 语法更简洁，两者关系类似于 NumPy 和 Pandas 之间的关系。</p>
+
+<p>但是更应该强调，应该把 seaborn 当做是 matplotlib 的补充，而不是替代物。</p>
+
+<p><img src="https://vip1.loli.net/2020/06/16/6jPJEx7cgo4lCrX.jpg" alt="seaborn.jpg" /></p>
+
+<h3 id="32-ggplot">3.2 ggplot</h3>
+
+<p>ggplot 是基于 R 的 ggplot 2 和 Python 的绘图系统，他的构建是为了用最少的代码快速绘制既美观有专业的图表。ggplot 与 Python 中的 pandas 有着共生的关系，如果打算使用 ggplot， 那么最好将数据保存在 dataframes 中，即若想使用 ggplot，则现将数据转化为 dataframes 形式。</p>
+
+<p><img src="https://vip1.loli.net/2020/06/16/PFocDq17luspim8.jpg" alt="ggplot.jpeg" /></p>
+
+<h3 id="33-bokeh">3.3 Bokeh</h3>
+
+<p>Bokeh 是基于 JavaScript 来实现的交互可视化库，他可以在 WEB 浏览器中实现美观的视觉效果。但是他也有明显的缺点：其一是版本时常需要更新，重要的是有些语法还不向下兼容；其二是语法晦涩，与 matplotlib 相比，可以说是有过之而无不及。</p>
+
+<p><img src="https://vip1.loli.net/2020/06/16/9jIxblYiUJAKZnq.jpg" alt="Bokeh.jpg" /></p>
+
+<p>同时 Bokeh 也有其相应的优点：</p>
+
+<ul>
+  <li>Bokeh 允许通过简单的指令快速创建复杂的统计图</li>
+  <li>Bokeh 提供到各种媒体的输出</li>
+  <li>我们也可以将 Bokeh 可视化嵌入 Flash 和 Django 程序</li>
+  <li>Bokeh 可转换写在其他库中的可视化</li>
+  <li>Bokeh 能领过的将交互式的应用、布局和不同样式选择用于可视化</li>
+</ul>
+
+<p>有机会会尝试一下。</p>
+
+<h2 id="4-结尾">4 结尾</h2>
+
+<p>这篇文档的书写确实是本人第一次接触文档类型的书写，体验很不同，以后如果还有时间可能还会继续写下去，并继续完善 Bokeh 库以及其他的数据可视化的库。</p>
+
+<p>本文书写参考《利用 Python 进行数据分析》和《Python 数据可视化之 matplotlib 和 pyecharts》，以及结合夏老师课上所讲所写。</p>
+
